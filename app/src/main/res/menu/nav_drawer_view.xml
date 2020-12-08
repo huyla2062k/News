@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Trang chủ"
+        android:icon="@drawable/home"
+        android:id="@+id/menuDocTrucTuyen" />
+    <item android:title="Tin đã lưu"
+        android:icon="@drawable/ic_baseline_save_24"
+        android:id="@+id/menuTinDaLuu" />
+    <item android:title="Tùy chỉnh"
+        android:icon="@drawable/setting_24dp"
+        android:id="@+id/menuTuyChinh" />
+
+</menu>
