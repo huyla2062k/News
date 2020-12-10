@@ -2,6 +2,7 @@ package com.laduchuy.news.Activity;
 
 import android.os.Bundle;
 import android.widget.CompoundButton;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -26,7 +27,6 @@ public class SettingActivity extends AppCompatActivity {
         binding.toggleNightMode.setChecked(Utils.darkmode);
 
 
-
         binding.toggleNightMode.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -34,17 +34,29 @@ public class SettingActivity extends AppCompatActivity {
                 Utils.darkmode = binding.toggleNightMode.isChecked();
             }
         });
+        binding.wvTest.loadData("<html><head><style>img{display: inline; height: auto; max-width: 100%;} </style></head><body>" + "Abc" + "</body></html>", "text/html", "UTF-8");
+        binding.wvTest.getSettings().setTextZoom(Utils.size);
+        binding.sbSize.setProgress(Utils.size);
 
+        binding.sbSize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            int progressChangedValue = 0;
 
-        if (binding.rdbSmall.isChecked()) {
-            Utils.size = 50;
-        }
-        else if (binding.rdbMedium.isChecked()) {
-            Utils.size = 100;
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                progressChangedValue = i;
+                binding.wvTest.getSettings().setTextZoom(progressChangedValue);
+            }
 
-        }
-        else if (binding.rdbBig.isChecked()) {
-            Utils.size = 160;
-        }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Utils.size = progressChangedValue;
+
+            }
+        });
     }
 }

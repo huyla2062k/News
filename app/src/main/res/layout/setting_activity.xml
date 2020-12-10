@@ -14,6 +14,7 @@
             android:weightSum="10">
 
             <TextView
+                android:textColor="@color/colorBlack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
@@ -35,44 +36,27 @@
             android:weightSum="10">
 
             <TextView
+                android:textColor="@color/colorBlack"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:text="Cỡ chữ"
                 android:textSize="22dp" />
 
-            <RadioGroup
-                android:id="@+id/rgSize"
+            <SeekBar
+                android:id="@+id/sbSize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:weightSum="3">
+                android:progress="100"
+                android:max="200"/>
 
-                <RadioButton
-                    android:id="@+id/rdbSmall"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Nhỏ"
-                    android:textSize="18dp" />
 
-                <RadioButton
-                    android:id="@+id/rdbMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Vừa"
-                    android:textSize="18dp" />
-
-                <RadioButton
-                    android:id="@+id/rdbBig"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Lớn"
-                    android:textSize="18dp" />
-            </RadioGroup>
         </LinearLayout>
+        <WebView
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/wvTest"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </layout>

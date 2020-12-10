@@ -56,8 +56,8 @@ public class NoiDungBao extends AppCompatActivity {
         String noidunglayduoc = intent.getStringExtra("ndBaiBao");
         final String url = intent.getStringExtra("URL");
         if (Utils.darkmode == true) {
-            binding.webviewbaibao.setBackgroundColor(Color.BLACK);
-            binding.webviewbaibao.loadData("<html><head><style>img{display: inline; height: auto; max-width: 100%;} body{color:#FFFFFF;} </style></head><body>" + noidunglayduoc + "</body></html>", "text/html", "UTF-8");
+            binding.webviewbaibao.setBackgroundColor(Color.GRAY);
+            binding.webviewbaibao.loadData("<html><head><style>img{display: inline; height: auto; max-width: 100%;}  </style></head><body>" + noidunglayduoc + "</body></html>", "text/html", "UTF-8");
         } else {
             binding.webviewbaibao.setBackgroundColor(Color.WHITE);
             binding.webviewbaibao.loadData("<html><head><style>img{display: inline; height: auto; max-width: 100%;} </style></head><body>" + noidunglayduoc + "</body></html>", "text/html", "UTF-8");
@@ -120,6 +120,13 @@ public class NoiDungBao extends AppCompatActivity {
 //                shareDialog.show(shareLinkContent);
 //            }
 //        });
+
+        binding.imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
 

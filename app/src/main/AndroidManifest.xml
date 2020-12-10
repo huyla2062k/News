@@ -28,11 +28,11 @@
 
         </activity>
 
-        <!--        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>-->
+                <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
 
-        <!--        <provider android:authorities="com.facebook.app.FacebookContentProvider{fb203265303593360}"-->
-        <!--            android:name="com.facebook.FacebookContentProvider"-->
-        <!--            android:exported="true"/>-->
+                <provider android:authorities="com.facebook.app.FacebookContentProvider206265303593360"
+                    android:name="com.facebook.FacebookContentProvider"
+                    android:exported="true"/>
 
     </application>
 

@@ -17,11 +17,32 @@ import com.laduchuy.news.ClassObject.DanhMucBao;
 import com.laduchuy.news.R;
 import com.laduchuy.news.Utils.ScreenSlidePageFragment;
 import com.laduchuy.news.Utils.StaticDataVNExpress;
+import com.laduchuy.news.Utils.Utils;
 import com.laduchuy.news.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static String MAIN = "Trang Chủ";
+    public static String Community = "Cộng Đồng";
+    public static String Entertainment = "Giải Trí";
+    public static String The_Times = "Thời Sự";
+    public static String Education = "Giáo dục";
+    public static String Travel = "Du Lịch";
+    public static String Science = "Khoa Học";
+    public static String Family = "Gia Đình";
+    public static String Business = "Kinh Doanh";
+    public static String Law = "Pháp Luật";
+    public static String Digitalization = "Số Hóa";
+    public static String Startup = "Startup";
+    public static String Health = "Sức Khỏe";
+    public static String Confiding = "Tâm sự";
+    public static String World = "Thế Giới";
+    public static String Sports = "Thể Thao";
+    public static String Car = "Xe";
+    public static String Laugh = "Cười";
+
 
 
     ActivityMainBinding binding;
@@ -32,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
         binding= DataBindingUtil.setContentView(this, R.layout.activity_main);
         pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 
+
+        if(Utils.darkmode=true){
+            this.setTheme(R.style.BlackTheme);
+        }else {
+            this.setTheme(R.style.AppTheme);
+        }
         setSupportActionBar(binding.toolbarHome);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -55,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case R.id.menuTuyChinh:
                                 Intent intent = new Intent(getBaseContext(),SettingActivity.class);
-                                startActivity(intent);
+                                startActivityForResult(intent,122);
                                 break;
 
                         }
@@ -70,24 +97,24 @@ public class MainActivity extends AppCompatActivity {
 
     public static ArrayList<DanhMucBao> getArrRSSVNExpress() {
         ArrayList<DanhMucBao> arrDanhMucBao = new ArrayList<>();
-        arrDanhMucBao.add(new DanhMucBao("Trang Chủ", StaticDataVNExpress.urlTrangChu));
-        arrDanhMucBao.add(new DanhMucBao("Cộng Đồng",StaticDataVNExpress.urlCongDong));
-        arrDanhMucBao.add(new DanhMucBao("Giải Trí",StaticDataVNExpress.urlGiaiTri));
-        arrDanhMucBao.add(new DanhMucBao("Thời Sự",StaticDataVNExpress.urlThoiSu));
-        arrDanhMucBao.add(new DanhMucBao("Giáo Dục",StaticDataVNExpress.urlGiaoDuc));
-        arrDanhMucBao.add(new DanhMucBao("Du Lịch",StaticDataVNExpress.urlDuLich));
-        arrDanhMucBao.add(new DanhMucBao("Khoa Học",StaticDataVNExpress.urlKhoaHoc));
-        arrDanhMucBao.add(new DanhMucBao("Gia Đình",StaticDataVNExpress.urlGiaDinh));
-        arrDanhMucBao.add(new DanhMucBao("Kinh Doanh",StaticDataVNExpress.urlKinhDoanh));
-        arrDanhMucBao.add(new DanhMucBao("Pháp Luật",StaticDataVNExpress.urlPhapLuat));
-        arrDanhMucBao.add(new DanhMucBao("Số Hóa",StaticDataVNExpress.urlSoHoa));
-        arrDanhMucBao.add(new DanhMucBao("Startup",StaticDataVNExpress.urlStartUp));
-        arrDanhMucBao.add(new DanhMucBao("Sức Khỏe",StaticDataVNExpress.urlSucKhoe));
-        arrDanhMucBao.add(new DanhMucBao("Tâm Sự",StaticDataVNExpress.urlTamSu));
-        arrDanhMucBao.add(new DanhMucBao("Thế Giới",StaticDataVNExpress.urlTheGioi));
-        arrDanhMucBao.add(new DanhMucBao("Thể Thao",StaticDataVNExpress.urlTheThao));
-        arrDanhMucBao.add(new DanhMucBao("Xe",StaticDataVNExpress.urlXe));
-        arrDanhMucBao.add(new DanhMucBao("Cười",StaticDataVNExpress.urlCuoi));
+        arrDanhMucBao.add(new DanhMucBao(MAIN, StaticDataVNExpress.urlTrangChu));
+        arrDanhMucBao.add(new DanhMucBao(Community,StaticDataVNExpress.urlCongDong));
+        arrDanhMucBao.add(new DanhMucBao(Entertainment,StaticDataVNExpress.urlGiaiTri));
+        arrDanhMucBao.add(new DanhMucBao(The_Times,StaticDataVNExpress.urlThoiSu));
+        arrDanhMucBao.add(new DanhMucBao(Education,StaticDataVNExpress.urlGiaoDuc));
+        arrDanhMucBao.add(new DanhMucBao(Travel,StaticDataVNExpress.urlDuLich));
+        arrDanhMucBao.add(new DanhMucBao(Science,StaticDataVNExpress.urlKhoaHoc));
+        arrDanhMucBao.add(new DanhMucBao(Family,StaticDataVNExpress.urlGiaDinh));
+        arrDanhMucBao.add(new DanhMucBao(Business,StaticDataVNExpress.urlKinhDoanh));
+        arrDanhMucBao.add(new DanhMucBao(Law,StaticDataVNExpress.urlPhapLuat));
+        arrDanhMucBao.add(new DanhMucBao(Digitalization,StaticDataVNExpress.urlSoHoa));
+        arrDanhMucBao.add(new DanhMucBao(Startup,StaticDataVNExpress.urlStartUp));
+        arrDanhMucBao.add(new DanhMucBao(Health,StaticDataVNExpress.urlSucKhoe));
+        arrDanhMucBao.add(new DanhMucBao(Confiding,StaticDataVNExpress.urlTamSu));
+        arrDanhMucBao.add(new DanhMucBao(World,StaticDataVNExpress.urlTheGioi));
+        arrDanhMucBao.add(new DanhMucBao(Sports,StaticDataVNExpress.urlTheThao));
+        arrDanhMucBao.add(new DanhMucBao(Car,StaticDataVNExpress.urlXe));
+        arrDanhMucBao.add(new DanhMucBao(Laugh,StaticDataVNExpress.urlCuoi));
         return arrDanhMucBao;
     }
 
