@@ -14,6 +14,15 @@ import java.util.ArrayList;
 
 
 public class DocRss extends AsyncTask<String, Void, ArrayList<ItemsRss>> {
+
+    public static String ITEM = "item";
+    public static String TITLE = "title";
+    public static String DES = "description";
+    public static String A = "a";
+    public static String HREF = "href";
+    public static String IMG = "img";
+    public static String SRC = "src";
+
     @Override
     protected ArrayList<ItemsRss> doInBackground(String... strings) {
 
@@ -22,19 +31,19 @@ public class DocRss extends AsyncTask<String, Void, ArrayList<ItemsRss>> {
         try {
             Document document = Jsoup.connect(url).get();
 
-            Elements elements = document.select("item");
-            for (Element element: elements){
-                String title = element.select("title").text();
+            Elements elements = document.select(ITEM);
+            for (Element element : elements) {
+                String title = element.select(TITLE).text();
 
-                String itemDescription = element.select("description").text();
+                String itemDescription = element.select(DES).text();
 
                 Document docDescription = Jsoup.parse(itemDescription);
 
-                String link = docDescription.select("a").attr("href");
-                String urlImg = docDescription.select("img ").attr("src");
+                String link = docDescription.select(A).attr(HREF);
+                String urlImg = docDescription.select(IMG).attr(SRC);
                 String description = docDescription.text();
 
-                items.add(new ItemsRss(title,description,link,urlImg));
+                items.add(new ItemsRss(title, description, link, urlImg));
             }
 
         } catch (IOException e) {

@@ -3,19 +3,35 @@ package com.laduchuy.news.ClassObject;
 import java.io.Serializable;
 
 
-
 public class ItemsRss implements Serializable {
 
-        private String title;
-        private String description;
-        private String link;
-        private String urlImg;
+    private String title;
+    private String description;
+    private String link;
+    private String urlImg;
+    private String pubDate;
+
+    public String getPubDate() {
+        return pubDate;
+    }
+
+    public ItemsRss(String title, String description, String link, String urlImg, String pubDate) {
+        this.title = title;
+        this.description = description;
+        this.link = link;
+        this.urlImg = urlImg;
+        this.pubDate = pubDate;
+    }
+
+    public void setPubDate(String pubDate) {
+        this.pubDate = pubDate;
+    }
 
     public ItemsRss(String title, String description, String link, String urlImg) {
-            this.title = title;
-            this.description = description;
-            this.link = link;
-            this.urlImg = urlImg;
+        this.title = title;
+        this.description = description;
+        this.link = link;
+        this.urlImg = urlImg;
     }
 
     public String getTitle() {

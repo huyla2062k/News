@@ -10,6 +10,10 @@ import java.io.IOException;
 
 
 public class BocNoiDungWeb extends AsyncTask<String, Void, String> {
+
+    public static String H1 = "h1";
+    public static String H2="h2";
+    public  static  String ARTICLE="article";
     @Override
     protected String doInBackground(String... strings) {
 
@@ -27,9 +31,9 @@ public class BocNoiDungWeb extends AsyncTask<String, Void, String> {
             document = Jsoup.connect(url).get();
 
 
-            title = document.select("h1");
-            description = document.select("h2");
-            conten_detail = document.select("article");
+            title = document.select(H1);
+            description = document.select(H2);
+            conten_detail = document.select(ARTICLE);
 
             noidung.append(title);
             noidung.append(description);

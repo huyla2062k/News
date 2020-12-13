@@ -10,6 +10,7 @@ public class OfflineRSSItem implements Serializable {
     private String content;
     private String urlImg;
 
+
     public OfflineRSSItem() {
     }
 

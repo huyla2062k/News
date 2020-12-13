@@ -6,13 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 
+import com.bumptech.glide.Glide;
 import com.laduchuy.news.Activity.MainActivity;
 import com.laduchuy.news.Activity.NoiDungBao;
 import com.laduchuy.news.Adapter.CustomDanhSachBaiBao;
@@ -32,16 +35,19 @@ public class ScreenSlidePageFragment extends Fragment {
     public static final String ARG_PAGE = "page";
     public static final String ARG_RSS = "rss";
     ListView lvDSBaiBao;
+    ImageView imgHotNew;
+    TextView tvHotTitle;
     ArrayList<DanhMucBao> arrRSS = new ArrayList<>();
     ArrayList<ItemsRss> itemsRsses = new ArrayList<>();
+
     DocRss docRss = new DocRss();
     private OfflineRSSItem offlineRSSItem;
-    public static ScreenSlidePageFragment create(int numbPage, String urlRSS)
-    {
+
+    public static ScreenSlidePageFragment create(int numbPage, String urlRSS) {
         ScreenSlidePageFragment fragment = new ScreenSlidePageFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(ARG_PAGE,numbPage);
-        bundle.putString(ARG_RSS,urlRSS);
+        bundle.putInt(ARG_PAGE, numbPage);
+        bundle.putString(ARG_RSS, urlRSS);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -53,6 +59,8 @@ public class ScreenSlidePageFragment extends Fragment {
                 R.layout.fr_screenslide_page, container, false);
 
         lvDSBaiBao = rootView.findViewById(R.id.lvDSBaiBao);
+        imgHotNew = rootView.findViewById(R.id.imgHotNew);
+        tvHotTitle = rootView.findViewById(R.id.tvHotTitle);
 
         String url = getArguments().getString(ARG_RSS);
         try {
@@ -64,12 +72,39 @@ public class ScreenSlidePageFragment extends Fragment {
             e.printStackTrace();
         }
 
-        CustomDanhSachBaiBao customDanhSachBaiBao = new CustomDanhSachBaiBao(getContext(), R.layout.item_listview_dsbaibao, itemsRsses);
+        final CustomDanhSachBaiBao customDanhSachBaiBao = new CustomDanhSachBaiBao(getContext(), R.layout.item_listview_dsbaibao, itemsRsses);
         if (itemsRsses == null) {
             Toast.makeText(getContext(), "Ko co data", Toast.LENGTH_SHORT).show();
         } else {
+            tvHotTitle.setText(customDanhSachBaiBao.getItem(0).getTitle());
+            Glide.with(getContext()).load(customDanhSachBaiBao.getItem(0).getUrlImg()).centerCrop().into(imgHotNew);
+
+            imgHotNew.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    BocNoiDungWeb bocNoiDungWeb = new BocNoiDungWeb();
+                    bocNoiDungWeb.execute(customDanhSachBaiBao.getItem(0).getLink());
+                    String noidunglayduoc = null;
+                    try {
+                        noidunglayduoc = "<style>img{display: inline;height: auto;max-width: 100%;}</style>" + bocNoiDungWeb.get();
+                        offlineRSSItem = new OfflineRSSItem(customDanhSachBaiBao.getItem(0).getTitle(), customDanhSachBaiBao.getItem(0).getDescription(), noidunglayduoc, customDanhSachBaiBao.getItem(0).getUrlImg());
+                        Intent intent = new Intent(getContext(), NoiDungBao.class);
+                        intent.putExtra("OfflineRSSItem", offlineRSSItem);
+                        intent.putExtra("ndBaiBao", noidunglayduoc);
+                        intent.putExtra("URL", customDanhSachBaiBao.getItem(0).getLink());
+                        startActivity(intent);
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+
             lvDSBaiBao.setAdapter(customDanhSachBaiBao);
         }
+
 
         lvDSBaiBao.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -80,11 +115,11 @@ public class ScreenSlidePageFragment extends Fragment {
 
                 try {
                     String noidunglayduoc = "<style>img{display: inline;height: auto;max-width: 100%;}</style>" + bocNoiDungWeb.get();
-                    offlineRSSItem = new OfflineRSSItem(itemsRsses.get(i).getTitle(),itemsRsses.get(i).getDescription(),noidunglayduoc,itemsRsses.get(i).getUrlImg());
+                    offlineRSSItem = new OfflineRSSItem(itemsRsses.get(i).getTitle(), itemsRsses.get(i).getDescription(), noidunglayduoc, itemsRsses.get(i).getUrlImg());
                     Intent intent = new Intent(getContext(), NoiDungBao.class);
-                    intent.putExtra("OfflineRSSItem",offlineRSSItem);
+                    intent.putExtra("OfflineRSSItem", offlineRSSItem);
                     intent.putExtra("ndBaiBao", noidunglayduoc);
-                    intent.putExtra("URL",itemsRsses.get(i).getLink());
+                    intent.putExtra("URL", itemsRsses.get(i).getLink());
                     startActivity(intent);
 
                 } catch (InterruptedException e) {

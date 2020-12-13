@@ -14,6 +14,8 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.Toolbar
+                app:titleTextColor="@color/colorWrite"
+                android:background="@color/colorPrimary"
                 android:id="@+id/toolbar_trangchu"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"

@@ -3,13 +3,40 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_120sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/hotnew_backgroup">
+
+            <ImageView
+                android:id="@+id/imgHotNew"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/tvHotTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorBlackv2"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/_7sdp"
+                android:text="abc"
+                android:textColor="@color/colorWrite"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-black"/>
+        </RelativeLayout>
 
         <ListView
-            android:dividerHeight="@dimen/_6sdp"
             android:id="@+id/lvDSBaiBao"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:dividerHeight="@dimen/_6sdp">
 
         </ListView>
     </LinearLayout>

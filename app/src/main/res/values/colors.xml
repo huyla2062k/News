@@ -6,4 +6,6 @@
     <color name="com_facebook_button_background_color_disabled">#3F51B5</color>
     <color name="colorBlack">#000000</color>
     <color name="colorWrite">#ffffff</color>
+    <color name="colorRed">#EF2121</color>
+    <color name="colorBlackv2">#9A000000</color>
 </resources>

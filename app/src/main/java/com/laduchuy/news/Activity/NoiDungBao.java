@@ -43,11 +43,15 @@ public class NoiDungBao extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.noidungbao_activity);
+
+
         //shareDialog = new ShareDialog(this);
         Actions();
         itemRssController = new DBOfflineRSSItem(NoiDungBao.this);
         offlineRSSItem = (OfflineRSSItem) getIntent().getSerializableExtra("OfflineRSSItem");
 //        Utils.changeToTheme(this,1);
+
+
     }
 
 

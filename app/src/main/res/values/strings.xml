@@ -5,4 +5,10 @@
     <string name="facebook_app_id">206265303593360</string>
     <string name="text_save">Lưu</string>
     <string name="text_darkmode">Chế độ ban đêm</string>
+
+
+    <string name="text_savenews">Tin đã lưu</string>
+    <string name="text_watch">Xem Video</string>
+    <string name="text_setting">Cài đặt</string>
+    <string name="text_weather">Thời tiết</string>
 </resources>
