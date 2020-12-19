@@ -1,6 +1,7 @@
 package com.laduchuy.news.Activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.Toast;
@@ -24,6 +25,15 @@ public class SettingActivity extends AppCompatActivity {
 
 
         binding = DataBindingUtil.setContentView(this, R.layout.setting_activity);
+
+        binding.toolbarSettings.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
+
+        binding.toolbarSettings.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         binding.toggleNightMode.setChecked(Utils.darkmode);
 
 
@@ -34,7 +44,7 @@ public class SettingActivity extends AppCompatActivity {
                 Utils.darkmode = binding.toggleNightMode.isChecked();
             }
         });
-        binding.wvTest.loadData("<html><head><style>img{display: inline; height: auto; max-width: 100%;} </style></head><body>" + "Abc" + "</body></html>", "text/html", "UTF-8");
+        binding.wvTest.loadData("<html><head></head><body>" + "Abc" + "</body></html>", "text/html", "UTF-8");
         binding.wvTest.getSettings().setTextZoom(Utils.size);
         binding.sbSize.setProgress(Utils.size);
 

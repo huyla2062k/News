@@ -10,48 +10,37 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.laduchuy.news.ClassObject.DanhMucBao;
 import com.laduchuy.news.R;
-import com.laduchuy.news.Utils.ScreenSlidePageFragment;
+import com.laduchuy.news.MyTask.ScreenSlidePageFragment;
+import com.laduchuy.news.Utils.Detail;
 import com.laduchuy.news.Utils.StaticDataVNExpress;
 import com.laduchuy.news.Utils.Utils;
 import com.laduchuy.news.databinding.ActivityMainBinding;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static String MAIN = "Trang Chủ";
-    public static String Community = "Cộng Đồng";
-    public static String Entertainment = "Giải Trí";
-    public static String The_Times = "Thời Sự";
-    public static String Education = "Giáo dục";
-    public static String Travel = "Du Lịch";
-    public static String Science = "Khoa Học";
-    public static String Family = "Gia Đình";
-    public static String Business = "Kinh Doanh";
-    public static String Law = "Pháp Luật";
-    public static String Digitalization = "Số Hóa";
-    public static String Startup = "Startup";
-    public static String Health = "Sức Khỏe";
-    public static String Confiding = "Tâm sự";
-    public static String World = "Thế Giới";
-    public static String Sports = "Thể Thao";
-    public static String Car = "Xe";
-    public static String Laugh = "Cười";
-    public static String Dia_TITLE = "Không có kêt nối Interner";
-    public static String Dia_Mess = "Bạn chuyển đến đọc tin đã lưu không!";
-    public static String Dia_OK = "Đồng ý";
-    public static String Dia_CANCLE = "Không";
-
 
     ActivityMainBinding binding;
     PagerAdapter pagerAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 
 
-        if (Utils.isNetworkAvailable(getBaseContext())) {
+        if (Utils.isInternetAvailable(getBaseContext())) {
             setSupportActionBar(binding.toolbarHome);
             binding.toolbarHome.setNavigationIcon(android.R.drawable.ic_menu_sort_by_size);
 
@@ -94,18 +83,21 @@ public class MainActivity extends AppCompatActivity {
                             return true;
                         }
                     });
+            new ReadWebAPI().execute();
+
+
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setTitle(Dia_TITLE);
-            builder.setMessage(Dia_Mess);
-            builder.setPositiveButton(Dia_OK, new DialogInterface.OnClickListener() {
+            builder.setTitle(Detail.Dia_TITLE);
+            builder.setMessage(Detail.Dia_Mess);
+            builder.setPositiveButton(Detail.Dia_OK, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     Intent intent1 = new Intent(MainActivity.this, DocBaoOfflineActivity.class);
                     startActivity(intent1);
                 }
             });
-            builder.setNegativeButton(Dia_CANCLE, new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(Detail.Dia_CANCLE, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     System.exit(1);
@@ -120,24 +112,24 @@ public class MainActivity extends AppCompatActivity {
 
     public static ArrayList<DanhMucBao> getArrRSSVNExpress() {
         ArrayList<DanhMucBao> arrDanhMucBao = new ArrayList<>();
-        arrDanhMucBao.add(new DanhMucBao(MAIN, StaticDataVNExpress.urlTrangChu));
-        arrDanhMucBao.add(new DanhMucBao(Community, StaticDataVNExpress.urlCongDong));
-        arrDanhMucBao.add(new DanhMucBao(Entertainment, StaticDataVNExpress.urlGiaiTri));
-        arrDanhMucBao.add(new DanhMucBao(The_Times, StaticDataVNExpress.urlThoiSu));
-        arrDanhMucBao.add(new DanhMucBao(Education, StaticDataVNExpress.urlGiaoDuc));
-        arrDanhMucBao.add(new DanhMucBao(Travel, StaticDataVNExpress.urlDuLich));
-        arrDanhMucBao.add(new DanhMucBao(Science, StaticDataVNExpress.urlKhoaHoc));
-        arrDanhMucBao.add(new DanhMucBao(Family, StaticDataVNExpress.urlGiaDinh));
-        arrDanhMucBao.add(new DanhMucBao(Business, StaticDataVNExpress.urlKinhDoanh));
-        arrDanhMucBao.add(new DanhMucBao(Law, StaticDataVNExpress.urlPhapLuat));
-        arrDanhMucBao.add(new DanhMucBao(Digitalization, StaticDataVNExpress.urlSoHoa));
-        arrDanhMucBao.add(new DanhMucBao(Startup, StaticDataVNExpress.urlStartUp));
-        arrDanhMucBao.add(new DanhMucBao(Health, StaticDataVNExpress.urlSucKhoe));
-        arrDanhMucBao.add(new DanhMucBao(Confiding, StaticDataVNExpress.urlTamSu));
-        arrDanhMucBao.add(new DanhMucBao(World, StaticDataVNExpress.urlTheGioi));
-        arrDanhMucBao.add(new DanhMucBao(Sports, StaticDataVNExpress.urlTheThao));
-        arrDanhMucBao.add(new DanhMucBao(Car, StaticDataVNExpress.urlXe));
-        arrDanhMucBao.add(new DanhMucBao(Laugh, StaticDataVNExpress.urlCuoi));
+        arrDanhMucBao.add(new DanhMucBao(Detail.MAIN, StaticDataVNExpress.urlTrangChu));
+        arrDanhMucBao.add(new DanhMucBao(Detail.Community, StaticDataVNExpress.urlCongDong));
+        arrDanhMucBao.add(new DanhMucBao(Detail.Entertainment, StaticDataVNExpress.urlGiaiTri));
+        arrDanhMucBao.add(new DanhMucBao(Detail.The_Times, StaticDataVNExpress.urlThoiSu));
+        arrDanhMucBao.add(new DanhMucBao(Detail.Education, StaticDataVNExpress.urlGiaoDuc));
+        arrDanhMucBao.add(new DanhMucBao(Detail.Travel, StaticDataVNExpress.urlDuLich));
+        arrDanhMucBao.add(new DanhMucBao(Detail.Science, StaticDataVNExpress.urlKhoaHoc));
+        arrDanhMucBao.add(new DanhMucBao(Detail.Family, StaticDataVNExpress.urlGiaDinh));
+        arrDanhMucBao.add(new DanhMucBao(Detail.Business, StaticDataVNExpress.urlKinhDoanh));
+        arrDanhMucBao.add(new DanhMucBao(Detail.Law, StaticDataVNExpress.urlPhapLuat));
+        arrDanhMucBao.add(new DanhMucBao(Detail.Digitalization, StaticDataVNExpress.urlSoHoa));
+        arrDanhMucBao.add(new DanhMucBao(Detail.Startup, StaticDataVNExpress.urlStartUp));
+        arrDanhMucBao.add(new DanhMucBao(Detail.Health, StaticDataVNExpress.urlSucKhoe));
+        arrDanhMucBao.add(new DanhMucBao(Detail.Confiding, StaticDataVNExpress.urlTamSu));
+        arrDanhMucBao.add(new DanhMucBao(Detail.World, StaticDataVNExpress.urlTheGioi));
+        arrDanhMucBao.add(new DanhMucBao(Detail.Sports, StaticDataVNExpress.urlTheThao));
+        arrDanhMucBao.add(new DanhMucBao(Detail.Car, StaticDataVNExpress.urlXe));
+        arrDanhMucBao.add(new DanhMucBao(Detail.Laugh, StaticDataVNExpress.urlCuoi));
         return arrDanhMucBao;
     }
 
@@ -161,6 +153,67 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             return getArrRSSVNExpress().get(position).getTendanhmuc();
+        }
+    }
+
+    public class ReadWebAPI extends AsyncTask<Void, Void, String> {
+
+        String urlApi = "http://api.openweathermap.org/data/2.5/weather?q=Hanoi&appid=559e9a92d09586b2faced211d05bb1dd";
+        String result = "";
+
+        @Override
+        protected String doInBackground(Void... voids) {
+
+
+            try {
+                URL url = new URL(urlApi);
+                URLConnection connection = url.openConnection();
+                InputStream is = connection.getInputStream();
+                int byteChacracter;
+                while ((byteChacracter = is.read()) != -1) {
+
+                    result += (char) byteChacracter;
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            getJson(result);
+        }
+
+        private void getJson(String json) {
+            try {
+
+                JSONObject jsonObject = new JSONObject(json);
+                JSONObject main = jsonObject.getJSONObject("main");
+                double temp = main.getDouble("temp");
+                int tempC = (int) (temp-273.15);
+                binding.tvTemple.setText(String.valueOf(tempC));
+                JSONArray jsonArray = jsonObject.getJSONArray("weather");
+                JSONObject des = jsonArray.getJSONObject(0);
+                String mainWeather = des.getString("main");
+                String desWeather = des.getString("description");
+                final String description = mainWeather + ": " + desWeather;
+                binding.tvTemple.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(getBaseContext(), description, Toast.LENGTH_LONG).show();
+                    }
+                });
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
         }
     }
 }

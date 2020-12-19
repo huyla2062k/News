@@ -2,6 +2,8 @@ package com.laduchuy.news.MyTask;
 
 import android.os.AsyncTask;
 
+import com.laduchuy.news.Utils.Detail;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -11,9 +13,7 @@ import java.io.IOException;
 
 public class BocNoiDungWeb extends AsyncTask<String, Void, String> {
 
-    public static String H1 = "h1";
-    public static String H2="h2";
-    public  static  String ARTICLE="article";
+
     @Override
     protected String doInBackground(String... strings) {
 
@@ -31,9 +31,9 @@ public class BocNoiDungWeb extends AsyncTask<String, Void, String> {
             document = Jsoup.connect(url).get();
 
 
-            title = document.select(H1);
-            description = document.select(H2);
-            conten_detail = document.select(ARTICLE);
+            title = document.select(Detail.H1);
+            description = document.select(Detail.H2);
+            conten_detail = document.select(Detail.ARTICLE);
 
             noidung.append(title);
             noidung.append(description);

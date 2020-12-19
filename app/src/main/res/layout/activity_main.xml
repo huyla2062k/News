@@ -16,34 +16,54 @@
 
         <androidx.appcompat.widget.Toolbar
             app:titleTextColor="@color/colorWrite"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorAccent"
             android:id="@+id/toolbar_home"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:title="@string/text_home">
+            <TextView
+                android:id="@+id/tv_temple"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="end"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/_16sdp"
+                android:text="14"
+                android:drawableRight="@drawable/thermometer"/>
+            
+            <ImageView
+                android:id="@+id/img_weather_title"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="end"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:src="@drawable/cloud"
+                />
+
 
         </androidx.appcompat.widget.Toolbar>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
-            android:background="@color/colorAccent"/>
+            android:background="@color/colorWrite"/>
         <com.google.android.material.tabs.TabLayout
             android:paddingLeft="@dimen/_5sdp"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorAccent"
 
             android:id="@+id/tablayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabMode="scrollable"
-            app:tabSelectedTextColor="@color/colorAccent">
+            app:tabSelectedTextColor="@color/colorWrite">
 
         </com.google.android.material.tabs.TabLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
-            android:background="@color/colorAccent"/>
+            android:background="@color/colorWrite"/>
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager"
             android:layout_width="match_parent"

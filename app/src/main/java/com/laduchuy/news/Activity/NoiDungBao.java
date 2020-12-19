@@ -56,7 +56,7 @@ public class NoiDungBao extends AppCompatActivity {
 
 
     private void Actions() {
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         String noidunglayduoc = intent.getStringExtra("ndBaiBao");
         final String url = intent.getStringExtra("URL");
         if (Utils.darkmode == true) {
@@ -114,6 +114,7 @@ public class NoiDungBao extends AppCompatActivity {
             }
         });
 
+
 //        binding.imgShare.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -124,6 +125,15 @@ public class NoiDungBao extends AppCompatActivity {
 //                shareDialog.show(shareLinkContent);
 //            }
 //        });
+
+        binding.imgSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(NoiDungBao.this,SettingActivity.class);
+
+                startActivityForResult(intent1,101);
+            }
+        });
 
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override

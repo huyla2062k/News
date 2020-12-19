@@ -7,6 +7,7 @@
         >
 
         <androidx.appcompat.widget.Toolbar
+            android:background="@color/colorAccent"
             android:id="@+id/toolbar_noidungbao"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize">
@@ -26,8 +27,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
 
-                android:layout_width="@dimen/_140sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_gravity="start"
                 android:layout_marginLeft="@dimen/_20sdp"
                 android:src="@drawable/vnexpress_logo">
@@ -44,12 +45,12 @@
             </androidx.appcompat.widget.AppCompatImageView>
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgShare"
+                android:id="@+id/imgSettings"
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_gravity="end"
                 android:layout_marginRight="@dimen/_15sdp"
-                android:src="@drawable/ic_baseline_share_24">
+                android:src="@drawable/ic_baseline_settings_24">
 
             </androidx.appcompat.widget.AppCompatImageView>
         </androidx.appcompat.widget.Toolbar>

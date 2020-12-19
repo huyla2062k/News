@@ -15,7 +15,7 @@
 
             <androidx.appcompat.widget.Toolbar
                 app:titleTextColor="@color/colorWrite"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorAccent"
                 android:id="@+id/toolbar_trangchu"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -25,7 +25,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_1sdp"
-                android:background="@color/colorAccent"/>
+                android:background="@color/colorWrite"/>
 
         </LinearLayout>
 

@@ -35,6 +35,7 @@ public class DocBaoOfflineActivity extends AppCompatActivity {
     AdapterListBaiBaoOffline adapterListBaiBaoOffline;
 
     DBPosts dbPosts;
+    boolean holdver;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,23 +88,13 @@ public class DocBaoOfflineActivity extends AppCompatActivity {
         Toast.makeText(this,offlineRSSItems.size() + "", Toast.LENGTH_SHORT).show();
         adapterListBaiBaoOffline = new AdapterListBaiBaoOffline(DocBaoOfflineActivity.this,R.layout.item_listview_dsbaibao,offlineRSSItems);
         binding.lvDSBaiBaoOffLine.setAdapter(adapterListBaiBaoOffline);
-
-        binding.lvDSBaiBaoOffLine.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(DocBaoOfflineActivity.this,NoiDungBao.class);
-                intent.putExtra("ndBaiBao",offlineRSSItems.get(i).getContent());
-                startActivity(intent);
-            }
-        });
-
-
         binding.lvDSBaiBaoOffLine.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 final int positon = i;
 
+                holdver = true;
                 Toast.makeText(DocBaoOfflineActivity.this, "Xóa", Toast.LENGTH_SHORT).show();
 
                 final AlertDialog.Builder builder = new AlertDialog.Builder(DocBaoOfflineActivity.this);
@@ -129,6 +120,23 @@ public class DocBaoOfflineActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
+
+        if (!holdver){
+            binding.lvDSBaiBaoOffLine.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Intent intent = new Intent(DocBaoOfflineActivity.this,NoiDungBao.class);
+                    intent.putExtra("ndBaiBao",offlineRSSItems.get(i).getContent());
+                    startActivity(intent);
+                }
+            });
+        }
+
+
+
+
 
     }
 

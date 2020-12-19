@@ -27,12 +27,12 @@ public class ItemsRss implements Serializable {
         this.pubDate = pubDate;
     }
 
-    public ItemsRss(String title, String description, String link, String urlImg) {
-        this.title = title;
-        this.description = description;
-        this.link = link;
-        this.urlImg = urlImg;
-    }
+//    public ItemsRss(String title, String description, String link, String urlImg) {
+//        this.title = title;
+//        this.description = description;
+//        this.link = link;
+//        this.urlImg = urlImg;
+//    }
 
     public String getTitle() {
         return title;
