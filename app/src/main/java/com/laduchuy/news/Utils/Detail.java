@@ -2,7 +2,7 @@ package com.laduchuy.news.Utils;
 
 public class Detail {
 
-    public static String MAIN = "Trang Chủ";
+    public static String Main = "Trang Chủ";
     public static String Community = "Cộng Đồng";
     public static String Entertainment = "Giải Trí";
     public static String The_Times = "Thời Sự";
@@ -28,4 +28,12 @@ public class Detail {
     public static String H1 = "h1";
     public static String H2="h2";
     public  static  String ARTICLE="article";
+
+    public static String TEMPC = "tempC";
+    public static String MAIN = "main";
+    public static String DES = "des";
+    public static String SPEED = "speed";
+    public static String VISIBILITY ="visibility";
+    public static String HUMIDITY="humidity";
+    public static String PRESSURE="pressure";
 }

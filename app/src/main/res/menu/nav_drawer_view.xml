@@ -9,10 +9,10 @@
         android:id="@+id/menuTinDaLuu"
         android:icon="@drawable/ic_baseline_save_24"
         android:title="@string/text_savenews" />
-    <item
-        android:id="@+id/menuXemVd"
-        android:icon="@drawable/ic_baseline_ondemand_video_24"
-        android:title="@string/text_watch" />
+<!--    <item-->
+<!--        android:id="@+id/menuXemVd"-->
+<!--        android:icon="@drawable/ic_baseline_ondemand_video_24"-->
+<!--        android:title="@string/text_watch" />-->
 <!--    <item-->
 <!--        android:id="@+id/menuWeather"-->
 <!--        android:icon="@drawable/weather_forecast"-->

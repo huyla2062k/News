@@ -29,7 +29,6 @@
                 android:layout_marginRight="@dimen/_15sdp"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/_16sdp"
-                android:text="14"
                 android:drawableRight="@drawable/thermometer"/>
             
             <ImageView

@@ -45,10 +45,10 @@ public class AdapterListBaiBaoOffline extends ArrayAdapter<OfflineRSSItem> {
         if (convertView == null) {
             viewHolder = new ViewHolder();
 
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_listview_dsbaibao, parent, false);
-            viewHolder.anhbaibao = convertView.findViewById(R.id.img_anhbaibao);
-            viewHolder.tieudebaibao = convertView.findViewById(R.id.tv_tieudebaibao);
-
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_dsbaibao, parent, false);
+            viewHolder.anhbaibao = convertView.findViewById(R.id.imgAvarta);
+            viewHolder.tieudebaibao = convertView.findViewById(R.id.tvTitle);
+viewHolder.tvDes = convertView.findViewById(R.id.tvDes);
             convertView.setTag(viewHolder);
 
         } else {

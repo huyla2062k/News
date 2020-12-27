@@ -26,6 +26,7 @@ import com.facebook.share.widget.ShareDialog;
 import com.laduchuy.news.ClassObject.OfflineRSSItem;
 import com.laduchuy.news.Database.DBOfflineRSSItem;
 import com.laduchuy.news.R;
+import com.laduchuy.news.Utils.Detail;
 import com.laduchuy.news.Utils.Utils;
 import com.laduchuy.news.databinding.NoidungbaoActivityBinding;
 
@@ -44,14 +45,32 @@ public class NoiDungBao extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.noidungbao_activity);
 
-
-        //shareDialog = new ShareDialog(this);
-        Actions();
-        itemRssController = new DBOfflineRSSItem(NoiDungBao.this);
-        offlineRSSItem = (OfflineRSSItem) getIntent().getSerializableExtra("OfflineRSSItem");
+        if (Utils.checkConnection(getBaseContext())) {
+            //shareDialog = new ShareDialog(this);
+            Actions();
+            itemRssController = new DBOfflineRSSItem(NoiDungBao.this);
+            offlineRSSItem = (OfflineRSSItem) getIntent().getSerializableExtra("OfflineRSSItem");
 //        Utils.changeToTheme(this,1);
 
-
+        }else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(NoiDungBao.this);
+            builder.setTitle(Detail.Dia_TITLE);
+            builder.setMessage(Detail.Dia_Mess);
+            builder.setPositiveButton(Detail.Dia_OK, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Intent intent1 = new Intent(NoiDungBao.this, DocBaoOfflineActivity.class);
+                    startActivity(intent1);
+                }
+            });
+            builder.setNegativeButton(Detail.Dia_CANCLE, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    System.exit(1);
+                }
+            });
+            builder.show();
+        }
     }
 
 
@@ -61,10 +80,10 @@ public class NoiDungBao extends AppCompatActivity {
         final String url = intent.getStringExtra("URL");
         if (Utils.darkmode == true) {
             binding.webviewbaibao.setBackgroundColor(Color.GRAY);
-            binding.webviewbaibao.loadData("<html><head><style>img{display: inline; height: auto; max-width: 100%;}  </style></head><body>" + noidunglayduoc + "</body></html>", "text/html", "UTF-8");
+            binding.webviewbaibao.loadData("<html><head><style> img {display: inline; height: auto; max-width: 100%;}  </style></head><body>" + noidunglayduoc + "</body></html>", "text/html", "UTF-8");
         } else {
             binding.webviewbaibao.setBackgroundColor(Color.WHITE);
-            binding.webviewbaibao.loadData("<html><head><style>img{display: inline; height: auto; max-width: 100%;} </style></head><body>" + noidunglayduoc + "</body></html>", "text/html", "UTF-8");
+            binding.webviewbaibao.loadData("<html><head><style> img {display: inline; height: auto; max-width: 100%;}   </style></head><body>" + noidunglayduoc + "</body></html>", "text/html", "UTF-8");
         }
 
         binding.webviewbaibao.setVisibility(View.VISIBLE);
