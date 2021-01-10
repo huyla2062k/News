@@ -1,5 +1,7 @@
 package com.laduchuy.news.Utils;
 
+import com.laduchuy.news.Activity.MainActivity;
+
 public class Detail {
 
     public static String Main = "Trang Chủ";

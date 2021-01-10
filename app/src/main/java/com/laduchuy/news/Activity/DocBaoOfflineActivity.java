@@ -63,7 +63,7 @@ public class DocBaoOfflineActivity extends AppCompatActivity {
                         {
                             case R.id.menuDocTrucTuyen:
                                 Intent intent = new Intent(getBaseContext(),MainActivity.class);
-                                startActivityForResult(intent,206);
+                                startActivity(intent);
                                 break;
                             case R.id.menuTinDaLuu:
                                 break;

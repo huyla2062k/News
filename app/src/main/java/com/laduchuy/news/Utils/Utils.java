@@ -6,7 +6,10 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.androidstudy.networkmanager.Monitor;
+import com.androidstudy.networkmanager.Tovuti;
 import com.laduchuy.news.R;
+
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -19,8 +22,8 @@ public class Utils {
     private static int sTheme;
     public final static int THEME_DEFAULT = 0;
     public final static int THEME_BLACK = 1;
-    public static int size=100;
-    public  static boolean darkmode = false;
+    public static int size = 100;
+    public static boolean darkmode = false;
 
 //    public static void changeToTheme(Activity activity, int theme)
 //    {
@@ -31,10 +34,8 @@ public class Utils {
 //
 //    }
 
-    public static void onActivityCreateSetTheme(Activity activity)
-    {
-        switch (sTheme)
-        {
+    public static void onActivityCreateSetTheme(Activity activity) {
+        switch (sTheme) {
             default:
             case THEME_DEFAULT:
                 activity.setTheme(R.style.AppTheme);
@@ -60,24 +61,14 @@ public class Utils {
 //        }
 //    }
 
-    public static boolean checkConnection(Context context) {
-        final ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    public static  boolean checkConnection(Context context) {
+        final boolean[] conn = new boolean[1];
 
-        if (connMgr != null) {
-            NetworkInfo activeNetworkInfo = connMgr.getActiveNetworkInfo();
-
-            if (activeNetworkInfo != null) { // connected to the internet
-                // connected to the mobile provider's data plan
-                if (activeNetworkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
-                    // connected to wifi
-                    return true;
-                } else return activeNetworkInfo.getType() == ConnectivityManager.TYPE_MOBILE;
-            }
-        }
-        return false;
+        return conn[0];
     }
 
-    public static String translate(String main){
+
+    public static String translate(String main) {
         if (main.equals("Mild")) return "Ấm áp";
         else if (main.equals("Dry")) return "Hanh khô";
         else if (main.equals("Clear")) return "Trời quang";
@@ -88,9 +79,17 @@ public class Utils {
         else if (main.equals("Foggy")) return "Sương mù";
         else if (main.equals("Haze")) return "Sương mù";
         else if (main.equals("Rain")) return "Mưa";
+        else if (main.equals("Clouds")) return "Nhiều mây";
         else return main;
     }
 
+
+    public static boolean isOnline(Context context) {
+        ConnectivityManager connMgr = (ConnectivityManager)
+                context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        return (networkInfo != null && networkInfo.isConnected());
+    }
 
 
 }

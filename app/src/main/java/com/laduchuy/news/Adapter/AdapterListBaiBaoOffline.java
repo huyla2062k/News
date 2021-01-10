@@ -48,7 +48,7 @@ public class AdapterListBaiBaoOffline extends ArrayAdapter<OfflineRSSItem> {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_dsbaibao, parent, false);
             viewHolder.anhbaibao = convertView.findViewById(R.id.imgAvarta);
             viewHolder.tieudebaibao = convertView.findViewById(R.id.tvTitle);
-viewHolder.tvDes = convertView.findViewById(R.id.tvDes);
+            viewHolder.tvDes = convertView.findViewById(R.id.tvDes);
             convertView.setTag(viewHolder);
 
         } else {
@@ -60,7 +60,7 @@ viewHolder.tvDes = convertView.findViewById(R.id.tvDes);
         viewHolder.anhbaibao.setScaleType(ImageView.ScaleType.FIT_XY);
 
         viewHolder.tvDes.setText(itemsRss.getDescription());
-        if (itemsRss.getUrlImg() != null){
+        if (itemsRss.getUrlImg() != null) {
             Glide.with(context).load(itemsRss.getUrlImg()).into(viewHolder.anhbaibao);
         }
 

@@ -45,32 +45,25 @@ public class NoiDungBao extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.noidungbao_activity);
 
-        if (Utils.checkConnection(getBaseContext())) {
-            //shareDialog = new ShareDialog(this);
-            Actions();
-            itemRssController = new DBOfflineRSSItem(NoiDungBao.this);
-            offlineRSSItem = (OfflineRSSItem) getIntent().getSerializableExtra("OfflineRSSItem");
-//        Utils.changeToTheme(this,1);
 
-        }else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(NoiDungBao.this);
-            builder.setTitle(Detail.Dia_TITLE);
-            builder.setMessage(Detail.Dia_Mess);
-            builder.setPositiveButton(Detail.Dia_OK, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    Intent intent1 = new Intent(NoiDungBao.this, DocBaoOfflineActivity.class);
-                    startActivity(intent1);
-                }
-            });
-            builder.setNegativeButton(Detail.Dia_CANCLE, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    System.exit(1);
-                }
-            });
-            builder.show();
-        }
+//            AlertDialog.Builder builder = new AlertDialog.Builder(NoiDungBao.this);
+//            builder.setTitle(Detail.Dia_TITLE);
+//            builder.setMessage(Detail.Dia_Mess);
+//            builder.setPositiveButton(Detail.Dia_OK, new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int i) {
+//                    Intent intent1 = new Intent(NoiDungBao.this, DocBaoOfflineActivity.class);
+//                    startActivity(intent1);
+//                }
+//            });
+//            builder.setNegativeButton(Detail.Dia_CANCLE, new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialogInterface, int i) {
+//                    System.exit(1);
+//                }
+//            });
+//            builder.show();
+        Actions();
     }
 
 
