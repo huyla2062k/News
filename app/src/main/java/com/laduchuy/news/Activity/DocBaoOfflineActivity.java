@@ -35,7 +35,6 @@ public class DocBaoOfflineActivity extends AppCompatActivity {
     AdapterListBaiBaoOffline adapterListBaiBaoOffline;
 
     DBPosts dbPosts;
-    boolean holdver;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,8 +67,8 @@ public class DocBaoOfflineActivity extends AppCompatActivity {
                             case R.id.menuTinDaLuu:
                                 break;
                             case R.id.menuTuyChinh:
-                                Intent intent1 = new Intent(getBaseContext(), SettingActivity.class);
-                                startActivityForResult(intent1,122);
+                                Intent intent1 = new Intent(DocBaoOfflineActivity.this, SettingActivity.class);
+                                startActivity(intent1);
                                 break;
                         }
                         binding.drawer.closeDrawers();
@@ -83,9 +82,13 @@ public class DocBaoOfflineActivity extends AppCompatActivity {
 
         offlineRSSItems = dbOfflineRSSItem.getAlLOffLineItemRss();
 
+        if (offlineRSSItems.isEmpty()){
+            binding.tvMess.setVisibility(View.VISIBLE);
+        }
+        else binding.tvMess.setVisibility(View.INVISIBLE);
 
 
-        Toast.makeText(this,offlineRSSItems.size() + "", Toast.LENGTH_SHORT).show();
+
         adapterListBaiBaoOffline = new AdapterListBaiBaoOffline(DocBaoOfflineActivity.this,R.layout.item_listview_dsbaibao,offlineRSSItems);
         binding.lvDSBaiBaoOffLine.setAdapter(adapterListBaiBaoOffline);
         binding.lvDSBaiBaoOffLine.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -94,12 +97,12 @@ public class DocBaoOfflineActivity extends AppCompatActivity {
 
                 final int positon = i;
 
-                holdver = true;
+
                 Toast.makeText(DocBaoOfflineActivity.this, "Xóa", Toast.LENGTH_SHORT).show();
 
                 final AlertDialog.Builder builder = new AlertDialog.Builder(DocBaoOfflineActivity.this);
-                builder.setTitle("Alert!!");
-                builder.setMessage("Bạn có muốn xóa!!!");
+                builder.setTitle("Xóa bài");
+                builder.setMessage("Bạn có chắc chắn muốn xóa bài báo này!!!");
                 builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -117,22 +120,24 @@ public class DocBaoOfflineActivity extends AppCompatActivity {
                     }
                 });
                 builder.show();
-                return false;
+                return true;
             }
         });
 
 
 
-        if (!holdver){
+
+
+
             binding.lvDSBaiBaoOffLine.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     Intent intent = new Intent(DocBaoOfflineActivity.this,NoiDungBao.class);
                     intent.putExtra("ndBaiBao",offlineRSSItems.get(i).getContent());
+                    intent.putExtra("offline",offlineRSSItems.get(i));
                     startActivity(intent);
                 }
             });
-        }
 
 
 

@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
 
-    public static int DATABASE_VERSION = 1;
+    public static int DATABASE_VERSION = 2;
     public static String DATABASE_NAME ="DOCBAOONLINE.db";
     public static String TABLE_NAME = "OfflineItemRSS";
     public static String Column_Title ="title";

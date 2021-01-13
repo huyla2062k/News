@@ -1,5 +1,6 @@
 package com.laduchuy.news.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -10,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.laduchuy.news.ClassObject.OfflineRSSItem;
 import com.laduchuy.news.R;
 import com.laduchuy.news.Utils.Utils;
 import com.laduchuy.news.databinding.SettingActivityBinding;
@@ -26,6 +28,8 @@ public class SettingActivity extends AppCompatActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.setting_activity);
 
+        final Intent intent1 = getIntent();
+        final OfflineRSSItem offlineRSSItem = (OfflineRSSItem) intent1.getSerializableExtra("offline1");
         binding.toolbarSettings.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
 
         binding.toolbarSettings.setNavigationOnClickListener(new View.OnClickListener() {

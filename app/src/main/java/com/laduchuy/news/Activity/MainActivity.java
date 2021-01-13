@@ -16,6 +16,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -87,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(intent1);
                                 break;
                             case R.id.menuTuyChinh:
-                                Intent intent = new Intent(getBaseContext(), SettingActivity.class);
-                                startActivityForResult(intent, 122);
+                                Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+                                startActivity(intent);
                                 break;
 
                         }
@@ -100,10 +101,9 @@ public class MainActivity extends AppCompatActivity {
         Tovuti.from(this).monitor(new Monitor.ConnectivityListener() {
             @Override
             public void onConnectivityChanged(int connectionType, boolean isConnected, boolean isFast) {
-                if (isConnected && isFast){
+                if (isConnected && isFast) {
                     Action();
-                }
-                else {
+                } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                     builder.setTitle(Detail.Dia_TITLE);
                     builder.setMessage(Detail.Dia_Mess);
@@ -155,9 +155,6 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbarHome);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
-
 
 
         soService = ApiUtils.getSOService();

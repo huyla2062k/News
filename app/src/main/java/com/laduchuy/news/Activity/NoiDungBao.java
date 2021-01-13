@@ -34,8 +34,7 @@ public class NoiDungBao extends AppCompatActivity {
     NoidungbaoActivityBinding binding;
 
 
-    private OfflineRSSItem offlineRSSItem;
-
+    public static OfflineRSSItem offlineRSSItem;
     DBOfflineRSSItem itemRssController;
     ShareLinkContent shareLinkContent;
     ShareDialog shareDialog;
@@ -69,14 +68,22 @@ public class NoiDungBao extends AppCompatActivity {
 
     private void Actions() {
         final Intent intent = getIntent();
-        String noidunglayduoc = intent.getStringExtra("ndBaiBao");
+        final String noidunglayduoc = intent.getStringExtra("ndBaiBao");
+
+        itemRssController = new DBOfflineRSSItem(getBaseContext());
         final String url = intent.getStringExtra("URL");
+
         if (Utils.darkmode == true) {
-            binding.webviewbaibao.setBackgroundColor(Color.GRAY);
-            binding.webviewbaibao.loadData("<html><head><style> img {display: inline; height: auto; max-width: 100%;}  </style></head><body>" + noidunglayduoc + "</body></html>", "text/html", "UTF-8");
+//            binding.imgSettings.setImageResource(R.drawable.ic_baseline_settings_24v2);
+            binding.imgBack.setImageResource(R.drawable.ic_baseline_arrow_back_24v2);
+            binding.imgSave.setImageResource(R.drawable.ic_baseline_save_24v2);
+            binding.webviewbaibao.setBackgroundColor(Color.parseColor("#272525"));
+            binding.toolbarNoidungbao.setBackgroundResource(R.color.colorBlackv2);
+            binding.webviewbaibao.loadData("<html><head><style> body{color: #fff;} img {display: inline; height: auto; max-width: 100%;}  </style></head><body>" + noidunglayduoc + "</body></html>", "text/html", "UTF-8");
+
         } else {
             binding.webviewbaibao.setBackgroundColor(Color.WHITE);
-            binding.webviewbaibao.loadData("<html><head><style> img {display: inline; height: auto; max-width: 100%;}   </style></head><body>" + noidunglayduoc + "</body></html>", "text/html", "UTF-8");
+            binding.webviewbaibao.loadData("<html><head><style> p{font-family: \"Arial\", Times, serif;} img {display: inline; height: auto; max-width: 100%;}   </style></head><body>" + noidunglayduoc + "</body></html>", "text/html", "UTF-8");
         }
 
         binding.webviewbaibao.setVisibility(View.VISIBLE);
@@ -116,6 +123,10 @@ public class NoiDungBao extends AppCompatActivity {
                 builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        assert offlineRSSItem != null;
+                        offlineRSSItem = (OfflineRSSItem) intent.getSerializableExtra("OfflineRSSItem");
+
+
                         long ok = itemRssController.Insert(offlineRSSItem);
                         if (ok > 0) {
                             Toast.makeText(NoiDungBao.this, "Đã lưu!", Toast.LENGTH_SHORT).show();
@@ -138,14 +149,13 @@ public class NoiDungBao extends AppCompatActivity {
 //            }
 //        });
 
-        binding.imgSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent1 = new Intent(NoiDungBao.this,SettingActivity.class);
-
-                startActivityForResult(intent1,101);
-            }
-        });
+//        binding.imgSettings.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent1 = new Intent(NoiDungBao.this, SettingActivity.class);
+//                startActivityForResult(intent1,101);
+//            }
+//        });
 
         binding.imgBack.setOnClickListener(new View.OnClickListener() {
             @Override

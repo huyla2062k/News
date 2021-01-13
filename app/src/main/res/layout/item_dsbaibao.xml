@@ -39,17 +39,11 @@
             android:textSize="@dimen/_9sdp"
             android:textStyle="italic" />
 
-        <TextView
-            android:id="@+id/tvTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
 
-            android:layout_gravity="bottom|right"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginRight="@dimen/_10sdp" />
 
 
     </LinearLayout>
+
 
 
 </LinearLayout>

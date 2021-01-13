@@ -14,36 +14,45 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.Toolbar
-                app:titleTextColor="@color/colorWrite"
-                android:background="@color/colorBlub"
                 android:id="@+id/toolbar_trangchu"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:title="Danh sách tin đã lưu">
+                android:background="@color/colorDark"
+                app:title="Danh sách tin đã lưu"
+                app:titleTextColor="@color/colorWrite">
 
             </androidx.appcompat.widget.Toolbar>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_1sdp"
-                android:background="@color/colorWrite"/>
+                android:background="@color/colorWrite" />
 
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_60sdp"
-            android:orientation="vertical"
+
             android:weightSum="2">
 
+
             <ListView
-                android:dividerHeight="@dimen/_6sdp"
                 android:id="@+id/lvDSBaiBaoOffLine"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
+                android:layout_height="match_parent"
+                android:dividerHeight="@dimen/_6sdp">
             </ListView>
-        </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvMess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Không có bài báo nào được lưu"
+                android:textSize="@dimen/_13sdp" />
+        </RelativeLayout>
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationview"

@@ -21,6 +21,8 @@ public class OfflineRSSItem implements Serializable {
         this.urlImg = urlImg;
     }
 
+
+
     public String getTitle() {
         return title;
     }

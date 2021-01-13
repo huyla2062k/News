@@ -16,7 +16,7 @@
 
         <androidx.appcompat.widget.Toolbar
             app:titleTextColor="@color/colorWrite"
-            android:background="@color/colorBlub"
+            android:background="@color/colorDark"
             android:id="@+id/toolbar_home"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -49,7 +49,7 @@
             android:background="@color/colorWrite"/>
         <com.google.android.material.tabs.TabLayout
             android:paddingLeft="@dimen/_5sdp"
-            android:background="@color/colorBlub"
+            android:background="@color/colorDark"
 
             android:id="@+id/tablayout"
             android:layout_width="match_parent"

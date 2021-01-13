@@ -39,7 +39,7 @@ public class ScreenSlidePageFragment extends Fragment {
     ArrayList<ItemsRss> itemsRsses = new ArrayList<>();
 
     DocRss docRss = new DocRss();
-    private OfflineRSSItem offlineRSSItem;
+     OfflineRSSItem offlineRSSItem;
 
     public static ScreenSlidePageFragment create(int numbPage, String urlRSS) {
         ScreenSlidePageFragment fragment = new ScreenSlidePageFragment();
@@ -72,7 +72,7 @@ public class ScreenSlidePageFragment extends Fragment {
 
         final CustomDanhSachBaiBao customDanhSachBaiBao = new CustomDanhSachBaiBao(getContext(), R.layout.item_listview_dsbaibao, itemsRsses);
         if (itemsRsses == null) {
-            Toast.makeText(getContext(), "Ko co data", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Ko co dữ liệu", Toast.LENGTH_SHORT).show();
         } else {
 
 //            imgHotNew.setOnClickListener(new View.OnClickListener() {

@@ -22,6 +22,7 @@ public class DBOfflineRSSItem {
     }
 
     public long Insert(OfflineRSSItem itemsRss) {
+
         db = helper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
